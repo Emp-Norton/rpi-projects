@@ -102,4 +102,6 @@ print "Please enter message to transmit: "
 message = gets.chomp 
 encoded_message = morse_encoder(message) 
 transmit(encoded_message)
+print "Message sent."
+exit
 
