@@ -10,20 +10,24 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-def setup_spi():
-    # create the spi bus
-    spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
-    # create the cs (chip select)
-    cs = digitalio.DigitalInOut(board.D5)
-    # create the mcp object
-    mcp = MCP.MCP3008(spi, cs)
-    # create an analog input channel on pin 0
-    chan = AnalogIn(mcp, MCP.P0)
+#g.setmode(g.BOARD)
 
-print('Raw ADC Value: ', chan.value)
-print('ADC Voltage: ' + str(chan.voltage) + 'V')
 
-g.setmode(g.BOARD)
+# create the spi bus
+spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+# create the cs (chip select)
+cs = digitalio.DigitalInOut(board.D22)
+# create the mcp object
+mcp = MCP.MCP3008(spi, cs)
+
+def setup_chan(mcp, input_pin):
+   # create an analog input channel on pin 0
+    return AnalogIn(mcp, input_pin)
+
+def get_analog_value(chan):
+	print('Raw ADC Value: ', chan.value)
+	print('ADC Voltage: ' + str(chan.voltage) + 'V')
+	return {'raw': chan.value, 'voltage': chan.voltage}
 
 # TODO Use keyword args here? Need to abstract away from 1-1 mapping for sensor and pump pins
 sensor_pin = 3
@@ -62,4 +66,5 @@ def pump(pump_pin=10, seconds=3):
 #    if NEEDS_WATER:
 #        print('Needs water')
 
+#spi, cs, mcp = setup_spi(board.D22)
 setup_pump(pump_relay_control_pin)
