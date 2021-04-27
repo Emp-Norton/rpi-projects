@@ -1,7 +1,29 @@
-import RPi.GPIO as g
+import board
+import busio
 import datetime
-import time
+import digitalio
+
+import RPi.GPIO as g
 import sys
+import time
+
+import adafruit_mcp3xxx.mcp3008 as MCP
+from adafruit_mcp3xxx.analog_in import AnalogIn
+
+# create the spi bus
+spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+
+# create the cs (chip select)
+cs = digitalio.DigitalInOut(board.D5)
+
+# create the mcp object
+mcp = MCP.MCP3008(spi, cs)
+
+# create an analog input channel on pin 0
+chan = AnalogIn(mcp, MCP.P0)
+
+print('Raw ADC Value: ', chan.value)
+print('ADC Voltage: ' + str(chan.voltage) + 'V')
 
 g.setmode(g.BOARD)
 
@@ -26,7 +48,7 @@ def setup_pump(pin):
 def pull_sensor_data(pin):
     g.setup(pin, g.IN)
     moisture_data = g.input(pin)
-    print("Moisture: {}".format(moisture_data))
+   # print("Moisture: {}".format(moisture_data))
     return moisture_data
 
 def pump(pump_pin=10, seconds=3):
@@ -42,4 +64,4 @@ def pump(pump_pin=10, seconds=3):
 #    if NEEDS_WATER:
 #        print('Needs water')
 
-setup_pump(8)
+setup_pump(pump_relay_control_pin)
