@@ -10,7 +10,7 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
 from WaterCtrl.vars import PUMP_CTRL_PIN, NUM_INPUTS
-from WaterCtrl.utils import get_analog_value
+from WaterCtrl.utils import get_analog_value, pump
 
 def setup_mcp_interface():
 	# Create the SPI bus
