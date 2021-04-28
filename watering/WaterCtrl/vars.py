@@ -1,2 +1,2 @@
 PUMP_CTRL_PIN = 8
-
+NUM_INPUTS = 2
