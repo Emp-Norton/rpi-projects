@@ -10,6 +10,9 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
 
+num_inputs = 
+
+
 def setup_mcp_interface():
 	# Create the SPI bus
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -31,6 +34,7 @@ def setup_pump(pin):
 	g.setup(pin, g.OUT)
 	g.output(pin, g.LOW)
 	g.output(pin, g.HIGH)
+
 
 
 for i in range(0, num_inputs):
