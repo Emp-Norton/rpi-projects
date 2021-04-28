@@ -38,12 +38,18 @@ def setup_pump(pin):
 
 
 def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
+	input_channels = {}
 	interface = setup_mcp_interface()
+
 	cs = interface['cs']
 	mcp = interface['mcp']
 	spi = interface['spi']
 
-	for i in range(0, num_inputs - 1):
-		setup_channel(mcp, i)
+	for i in range(0, num_inputs):
+		print(i)
+		input_channels = {str(i): setup_channel(mcp, i)}
+		print(input_channels)
 
 	setup_pump(pump_pin)
+
+	return input_channels
