@@ -10,7 +10,7 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
 
-num_inputs = 
+num_inputs = 1
 
 
 def setup_mcp_interface():
@@ -22,6 +22,8 @@ def setup_mcp_interface():
 
 	# Create the MCP object
 	mcp = MCP.MCP3008(spi, cs)
+
+	return {mcp: mcp, cs:cs, spi:spi}
 
 def setup_channel(mcp, input_pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
@@ -36,8 +38,8 @@ def setup_pump(pin):
 	g.output(pin, g.HIGH)
 
 
+def run_setup(num_inputs, PUMP_CTRL_PIN):
+	for i in range(0, num_inputs - 1):
+		setup_chanel(mcp, i)
 
-for i in range(0, num_inputs):
-	setup_chanel(mcp, i)
-
-setup_pump(PUMP_CTRL_PIN)
+	setup_pump(PUMP_CTRL_PIN)
