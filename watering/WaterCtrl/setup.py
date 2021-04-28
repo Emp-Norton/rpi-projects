@@ -9,7 +9,7 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
-from vars import PUMP_CTRL_PIN, NUM_INPUTS
+from WaterCtrl.vars import PUMP_CTRL_PIN, NUM_INPUTS
 
 
 def setup_mcp_interface():
@@ -22,7 +22,7 @@ def setup_mcp_interface():
 	# Create the MCP object
 	mcp = MCP.MCP3008(spi, cs)
 
-	return {mcp: mcp, cs:cs, spi:spi}
+	return {'mcp': mcp, 'cs':cs, 'spi':spi}
 
 def setup_channel(mcp, input_pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
@@ -37,8 +37,13 @@ def setup_pump(pin):
 	g.output(pin, g.HIGH)
 
 
-def run_setup(num_inputs, PUMP_CTRL_PIN):
-	for i in range(0, num_inputs - 1):
-		setup_chanel(mcp, i)
+def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
+	interface = setup_mcp_interface()
+	cs = interface['cs']
+	mcp = interface['mcp']
+	spi = interface['spi']
 
-	setup_pump(PUMP_CTRL_PIN)
+	for i in range(0, num_inputs - 1):
+		setup_channel(mcp, i)
+
+	setup_pump(pump_pin)
