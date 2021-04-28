@@ -9,8 +9,7 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
-
-num_inputs = 1
+from vars import PUMP_CTRL_PIN, NUM_INPUTS
 
 
 def setup_mcp_interface():
