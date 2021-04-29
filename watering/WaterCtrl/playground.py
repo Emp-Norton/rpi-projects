@@ -10,6 +10,8 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
+from WaterCtrl import vars
+
 #g.setmode(g.BOARD)
 
 
@@ -21,6 +23,7 @@ cs = digitalio.DigitalInOut(board.D22)
 mcp = MCP.MCP3008(spi, cs)
 
 def setup_chan(mcp, input_pin):
+    print("Setting up analog channel on pin {}".format(input_pin))
    # create an analog input channel on pin 0
     return AnalogIn(mcp, input_pin)
 
@@ -32,7 +35,7 @@ def get_analog_value(chan):
 # TODO Use keyword args here? Need to abstract away from 1-1 mapping for sensor and pump pins
 sensor_pin = 3
 sensor_pin2 = 12
-pump_relay_control_pin = 8
+pump_relay_control_pin = vars.PUMP_CTRL_PIN
 
 NEEDS_WATER = False
 
@@ -43,6 +46,7 @@ def shoutout_pins():
         print("Setting {} as sensor pin".format(pin))
 
 def setup_pump(pin):
+    print("setting up pump on pin {}".format(pin))
     g.setup(pin, g.OUT)
     g.output(pin, g.LOW)
     g.output(pin, g.HIGH)
@@ -54,6 +58,7 @@ def pull_sensor_data(pin):
     return moisture_data
 
 def pump(pump_pin=10, seconds=3):
+    print("Switching pump \# /#{} on for {} seconds".format(pump_pin, seconds))
     g.output(pump_pin, g.LOW)
     time.sleep(seconds)
     g.output(pump_pin, g.HIGH)
