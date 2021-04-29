@@ -12,6 +12,10 @@ from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 from WaterCtrl.vars import PUMP_CTRL_PIN, NUM_INPUTS
 from WaterCtrl.utils import get_analog_value, pump
 
+# TODO Create classes for hardware elements Pump, Sensor, and use methods. Way easier and cleaner.
+
+
+
 def setup_mcp_interface():
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 	print("Created the SPI bus {}".format(spi))
