@@ -27,11 +27,11 @@ def setup_mcp_interface():
 def setup_channel(mcp, input_pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
 	ai = AI(mcp, input_pin)
-	print("Created an analog input {} on MCP3008 Channel \#{}".format(input_pin))
+	print("Created an analog input {} on MCP3008 Channel \#{}".format(ai, input_pin))
 
-	reutn ai
+	return ai
 
-def setup_pump(pin):
+def setup_pump(pin=PUMP_CTRL_PIN):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
 	print("Setting up pump controller on pin {}".format(pin))
 	g.setup(pin, g.OUT)
