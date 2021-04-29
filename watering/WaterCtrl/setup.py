@@ -13,25 +13,27 @@ from WaterCtrl.vars import PUMP_CTRL_PIN, NUM_INPUTS
 from WaterCtrl.utils import get_analog_value, pump
 
 def setup_mcp_interface():
-	# Create the SPI bus
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+	print("Created the SPI bus {}".format(spi))
 
-	# Create the chip select
 	cs = digitalio.DigitalInOut(board.D22)
+	print("Created the chip select {}".format(cs))
 
-	# Create the MCP object
 	mcp = MCP.MCP3008(spi, cs)
+	print("Created the MCP object {}",format(mcp))
 
 	return {'mcp': mcp, 'cs':cs, 'spi':spi}
 
 def setup_channel(mcp, input_pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
-	# Create an analog input channel on MCP pin 0
-	return AI(mcp, input_pin)
+	ai = AI(mcp, input_pin)
+	print("Created an analog input {} on MCP3008 Channel \#{}".format(input_pin))
 
+	reutn ai
 
 def setup_pump(pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
+	print("Setting up pump controller on pin {}".format(pin))
 	g.setup(pin, g.OUT)
 	g.output(pin, g.LOW)
 	g.output(pin, g.HIGH)
@@ -39,6 +41,8 @@ def setup_pump(pin):
 
 def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	input_channels = {}
+
+	print("Running setup MCP/CS/SPI")
 	interface = setup_mcp_interface()
 
 	cs = interface['cs']
@@ -51,3 +55,4 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	setup_pump(pump_pin)
 
 	return input_channels
+
