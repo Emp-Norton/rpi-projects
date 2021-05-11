@@ -1,3 +1,4 @@
+import argparse
 import board
 import busio
 import datetime
@@ -9,12 +10,10 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
-from WaterCtrl.vars import PUMP_CTRL_PIN, NUM_INPUTS
-from WaterCtrl.utils import get_analog_value, pump
+from vars import PUMP_CTRL_PIN, NUM_INPUTS
+from utils import get_analog_value, pump
 
 # TODO Create classes for hardware elements Pump, Sensor, and use methods. Way easier and cleaner.
-
-
 
 def setup_mcp_interface():
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -44,8 +43,6 @@ def setup_pump(pin=PUMP_CTRL_PIN):
 
 
 def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
-	input_channels = {}
-
 	print("Running setup MCP/CS/SPI")
 	interface = setup_mcp_interface()
 
@@ -53,10 +50,9 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	mcp = interface['mcp']
 	spi = interface['spi']
 
-	for i in range(0, num_inputs):
-		input_channels[str(i)] = setup_channel(mcp, i)
+	for i in range(0, len(input_channels)):
+		input_channels[str(i)] = setup_channel(mcp, input_channels[str(i)])
 
 	setup_pump(pump_pin)
 
-	return input_channels
 
