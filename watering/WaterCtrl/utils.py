@@ -10,13 +10,15 @@ def write_to_log(data, path='./'):
 
 def read_all_pins(inputs, write_logs=False):
 	for channel in list(inputs.values()):
+		name = channel['name']
 		sensor = channel['sensor']
 		readings = get_analog_value(sensor)
+		print(name, channel)
+		message = "Reading from {}:\n\n\nRAW: {}\nVOLTAGE: {}\n\n".format(name, readings['raw'], readings['voltage'])
+		print(message)
 
-		message = "Reading from {}:\n\n{}\n\nRAW: {}\nVOLTAGE: {}\n\n".format(datetime.datetime.now, channel['name'], readings['raw'], readings['voltage'])
 		if write_logs:
 			print("writing readings to log")
-			print(message)
 			write_to_log(message)
 
 def get_analog_value(chan):
