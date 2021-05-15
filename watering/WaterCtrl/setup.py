@@ -1,4 +1,3 @@
-import argparse
 import board
 import busio
 import datetime
@@ -10,8 +9,9 @@ import time
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
+from collections import defaultdict
 from vars import PUMP_CTRL_PIN, NUM_INPUTS
-from utils import get_analog_value, pump
+from utils import get_analog_value, pump, get_args
 
 # TODO Create classes for hardware elements Pump, Sensor, and use methods. Way easier and cleaner.
 
@@ -46,13 +46,22 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	print("Running setup MCP/CS/SPI")
 	interface = setup_mcp_interface()
 
+	input_channels = {}
+	args = get_args()
+	args_dict = vars(args)
+	print(args_dict)
 	cs = interface['cs']
 	mcp = interface['mcp']
 	spi = interface['spi']
 
-	for i in range(0, len(input_channels)):
-		input_channels[str(i)] = setup_channel(mcp, input_channels[str(i)])
+
+	for _, pin in args_dict:
+		pin = int(pin)
+		print(_, pin, args_dict)
+		input_channels[pin] = {'name': args_dict["p{}".format(pin)], 'sensor': setup_channel(mcp, pin)}
 
 	setup_pump(pump_pin)
+
+	return input_channels
 
 
