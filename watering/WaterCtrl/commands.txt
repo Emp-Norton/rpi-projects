@@ -1,0 +1,1 @@
+python -i runwatering.py --p0 'Small Succulent (Cuban Oregano)' --p1 'Curio Ficoides' --p2 'Large Succulent Blue (Echeveria)' --p3 'Old Pothos' --p4 'New Pothos'
