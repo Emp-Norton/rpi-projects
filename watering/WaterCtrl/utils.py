@@ -9,17 +9,18 @@ def write_to_log(data, path='./'):
 		file.write('written {}\n{}\n'.format(datetime.datetime.now(), data))
 
 def read_all_pins(inputs, write_logs=False):
-	for channel in inputs:
-		sensor_info = inputs[channel]
-		readings = get_analog_value(sensor_info['sensor'])
+	for channel in list(inputs.values()):
+		sensor = channel['sensor']
+		readings = get_analog_value(sensor)
 
-		message = "Reading from {}:\n\n{}\n\nRAW: {}\nVOLTAGE: {}\n\n".format(datetime.datetime.now, sensor_info['name'], reading['raw'], reading['voltage'])
-		print("writing readings to log")
-		print(message)
-		write_to_log(message)
+		message = "Reading from {}:\n\n{}\n\nRAW: {}\nVOLTAGE: {}\n\n".format(datetime.datetime.now, channel['name'], readings['raw'], readings['voltage'])
+		if write_logs:
+			print("writing readings to log")
+			print(message)
+			write_to_log(message)
 
 def get_analog_value(chan):
-	print("Raw ADC: ", str(chan.value))
+	print("Raw ADC: ", chan.value)
 	print("ADC Voltage: ", chan.voltage)
 	return {'raw': chan.value, 'voltage': chan.voltage}
 
