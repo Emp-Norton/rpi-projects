@@ -12,18 +12,15 @@ def read_all_pins(inputs, write_logs=False):
 	for channel in list(inputs.values()):
 		name = channel['name']
 		sensor = channel['sensor']
-		print(name, channel)
-		message = "\nReading from {}:".format(name)
-		print(message)
 		readings = get_analog_value(sensor)
+		message = "\nReading from {}:\n{}\n{}\n\n".format(name, sensor.value, sensor.voltage)
+		print(message)
 
 		if write_logs:
 			print("writing readings to log")
 			write_to_log(message)
 
 def get_analog_value(chan):
-	print("Raw ADC: ", chan.value)
-	print("ADC Voltage: \n", chan.voltage)
 	return {'raw': chan.value, 'voltage': chan.voltage}
 
 def pump(pump_pin, seconds):
