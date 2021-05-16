@@ -1,12 +1,15 @@
 import argparse
-import datetime
+from datetime import datetime
 import RPi.GPIO as g
 import time
 
 
-def write_to_log(data, path='./'):
+def write_to_log(data):
+	now = datetime.now()
+	accurate = now.strftime('%m/%d/%Y - %I:%M:%s %p')
+	path='/home/pi/projects/rpi-projects/watering/WaterCtrl/logs/sensors/{}.txt'.format(now.strftime("%I:%M:%s %p"))
 	with open(path, 'a') as file:
-		file.write('written {}\n{}\n'.format(datetime.datetime.now(), data))
+		file.write('written {}\n{}\n'.format(now, data))
 
 def read_all_pins(inputs, write_logs=False):
 	for channel in list(inputs.values()):
