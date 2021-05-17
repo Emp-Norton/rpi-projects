@@ -5,6 +5,7 @@ import time
 
 
 def write_to_log(data):
+	# TODO: Fix this to be more clear in output, better organized, better naming conventions, and dynamic file path
 	now = datetime.now()
 	accurate = now.strftime('%m/%d/%Y - %I:%M:%s %p')
 	path='/home/pi/projects/rpi-projects/watering/WaterCtrl/logs/sensors/{}.txt'.format(now.strftime("%I:%M:%s %p"))
@@ -12,6 +13,7 @@ def write_to_log(data):
 		file.write('written {}\n{}\n'.format(now, data))
 
 def read_all_pins(inputs, write_logs=False):
+	# TODO: add default paths and filename patterns for various components (pumps, sensors, etc)
 	for channel in list(inputs.values()):
 		name = channel['name']
 		sensor = channel['sensor']
@@ -28,6 +30,7 @@ def get_analog_value(chan):
 	return {'raw': chan.value, 'voltage': chan.voltage}
 
 def pump(pump_pin, seconds):
+	# TODO: Log pump activity in terms of which relay pump, duration, etc
 	print(pump_pin, seconds)
 	g.output(pump_pin, g.LOW)
 	time.sleep(seconds)

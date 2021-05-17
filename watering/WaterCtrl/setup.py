@@ -16,6 +16,7 @@ from utils import get_analog_value, pump, get_args
 # TODO Create classes for hardware elements Pump, Sensor, and use methods. Way easier and cleaner.
 
 def setup_mcp_interface():
+	# TODO: investigate setting up multiple MCP3008 boards, and why P0 keeps getting fried (always no power or full power)
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 	print("Created the SPI bus {}".format(spi))
 
