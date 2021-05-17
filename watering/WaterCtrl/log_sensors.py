@@ -4,6 +4,6 @@ import vars as v
 
 inputs = s.run_setup()
 
-readings = read_all_pins(inputs, write_logs=True)
+readings = u.read_all_pins(inputs, write_logs=True)
 
 
