@@ -21,7 +21,8 @@ def read_all_pins(inputs, write_logs=False):
 
 		if write_logs:
 			print("writing readings to log")
-			write_to_log(message)
+			if name is not None:
+				write_to_log(message)
 
 def get_analog_value(chan):
 	return {'raw': chan.value, 'voltage': chan.voltage}
