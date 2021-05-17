@@ -1,0 +1,42 @@
+written 2021-05-17 02:31:22.922607
+
+Reading from Curio Ficoides:
+34944
+1.7595971618219273
+
+
+written 2021-05-17 02:31:22.926591
+
+Reading from Large Succulent Blue (Echeveria):
+28288
+1.4244357976653697
+
+
+written 2021-05-17 02:31:22.930289
+
+Reading from Old Pothos:
+27136
+1.3664271000228883
+
+
+written 2021-05-17 02:31:22.933957
+
+Reading from New Pothos:
+28672
+1.4437720302128632
+
+
+written 2021-05-17 02:31:22.941130
+
+Reading from Small Succulent (Cuban Oregano):
+29248
+1.4727763790341037
+
+
+written 2021-05-17 02:31:22.944873
+
+Reading from Large Succulent Blue (Echeveria) - (Capacative):
+34304
+1.7305928130006865
+
+
