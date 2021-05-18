@@ -1,1 +1,1 @@
---p7 'Large Succulent Blue (Echeveria) - (Capacative)' --p6 'Small Succulent (Cuban Oregano)' --p1 'Curio Ficoides' --p2 'Large Succulent Blue (Echeveria)' --p3 'Old Pothos' --p4 'New Pothos'
+--p1 'Curio Ficoides' --p2 'Large Succulent Blue (Echeveria)' --p3 'Old Pothos' --p4 'New Pothos' --p6 'Small Succulent (Cuban Oregano)' --p7 'Large Succulent Blue (Echeveria) - (Capacative)'
