@@ -1,1 +1,1 @@
-python -i runwatering.py --p7 'Large Succulent Blue (Echeveria) - (Capacative)' --p6 'Small Succulent (Cuban Oregano)' --p1 'Curio Ficoides' --p2 'Large Succulent Blue (Echeveria)' --p3 'Old Pothos' --p4 'New Pothos'
+python -i runwatering.py $(cat /home/pi/projects/rpi-projects/watering/WaterCtrl/commands/args-test.txt) 
