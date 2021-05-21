@@ -1,16 +1,38 @@
 import argparse
 from datetime import datetime
-import RPi.GPIO as g
+import os
 import time
+
+import RPi.GPIO as g
+
+
+def write(path, data, now):
+	# TODO Error handling and just choose one place to display write-time
+	with open(path, 'a+') as file:
+		file.write('Recorded: {}\n{}\n'.format(now, data))
 
 
 def write_to_log(data):
 	# TODO: Fix this to be more clear in output, better organized, better naming conventions, and dynamic file path
 	now = datetime.now()
-	accurate = now.strftime('%m/%d/%Y - %I:%M:%s %p')
-	path='/home/pi/projects/rpi-projects/watering/WaterCtrl/logs/sensors/{}.txt'.format(now.strftime("%I:%M:%s %p"))
-	with open(path, 'a') as file:
-		file.write('written {}\n{}\n'.format(now, data))
+	str_datetime = now.strftime('%Y-%m-%d - %I:%M:%s %p')
+	time_parts = str_datetime.split(' ')
+	date = time_parts[0]
+	time = "-".join(time_parts[2:])
+
+	#project_path = os.environ['/watering/WaterCtrl']
+	workspace = os.environ['workspace']
+	path="{}/watering/WaterCtrl/logs/sensors/{}/".format(workspace, date)
+
+	if os.path.exists(path):
+		write(path+"{}.txt".format(time), data, time)
+	else:
+		new_dir = "{}/{}/logs/sensors/{}"
+		os.makedirs(new_dir.format(workspace, '/watering/WaterCtrl', date))
+		file_name = "{}/{}.txt".format(new_dir, time)
+		write(file_name, data, time)
+
+
 
 def read_all_pins(inputs, write_logs=False):
 	# TODO: add default paths and filename patterns for various components (pumps, sensors, etc)
