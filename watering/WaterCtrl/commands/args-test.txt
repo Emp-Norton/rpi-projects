@@ -1,1 +1,1 @@
---p1 'Curio-Ficoides' --p2 'Large-Succulent-Blue-(Echeveria)' --p3 'Old-Pothos' --p4 'New-Pothos' --p5 "Cilantro" --p6 'Small-Succulent-(Cuban-Oregano)' --p7 'Large-Succulent-Blue-(Echeveria)-(Capacative)'
+--p1 'Curio-Ficoides-(Watering)' --p2 'Large-Succulent-Blue-(Echeveria)' --p3 'Old-Pothos' --p4 'New-Pothos' --p5 "Cilantro" --p6 'Small-Succulent-(Cuban-Oregano)' --p7 'Prayer-Plant-(Capacative)-(Watering)'
