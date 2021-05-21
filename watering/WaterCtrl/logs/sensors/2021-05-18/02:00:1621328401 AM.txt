@@ -1,0 +1,42 @@
+written 2021-05-18 02:00:01.822369
+
+Reading from 'Curio-Ficoides':
+38464
+1.9368459601739527
+
+
+written 2021-05-18 02:00:01.826059
+
+Reading from 'Large-Succulent-Blue-(Echeveria)':
+26432
+1.3342000457770655
+
+
+written 2021-05-18 02:00:01.829638
+
+Reading from 'Old-Pothos':
+28800
+1.4502174410620279
+
+
+written 2021-05-18 02:00:01.833082
+
+Reading from 'New-Pothos':
+29952
+1.5082261387045088
+
+
+written 2021-05-18 02:00:01.839774
+
+Reading from 'Small-Succulent-(Cuban-Oregano)':
+29632
+1.4921126115815975
+
+
+written 2021-05-18 02:00:01.843258
+
+Reading from 'Large-Succulent-Blue-(Echeveria)-(Capacative)':
+35136
+1.7724879835202563
+
+
