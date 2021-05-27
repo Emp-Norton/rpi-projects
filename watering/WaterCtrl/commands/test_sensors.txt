@@ -1,0 +1,12 @@
+python -i runwatering.py  --p3 'Old-pothos-corrosion-test-wet-old-sensor' --p5 "Cilanto-sensor-corrosion-test-wet" --p7 'Prayer-pray-sensor-corrosion-test-wet'
+
+
+
+#--p0 'Small-Succulent-(Cuban-Oregano)' 
+#--p1 'Curio-Ficoides' 
+#--p2 'Large-Succulent-Blue-(Echeveria)' 
+#--p4 'New-Pothos' 
+#--p6 'Small-Succulent-(Cuban-Oregano)' 
+
+# TODO Why do this instead of just adding the argparser to runwatering.py? What was I thinking?
+
