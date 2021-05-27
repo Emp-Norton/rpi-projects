@@ -20,7 +20,7 @@ def setup_mcp_interface():
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 	print("Created the SPI bus {}".format(spi))
 
-	cs = digitalio.DigitalInOut(board.D22)
+	cs = digitalio.DigitalInOut(board.CE0)
 	print("Created the chip select {}".format(cs))
 
 	mcp = MCP.MCP3008(spi, cs)
@@ -31,7 +31,7 @@ def setup_mcp_interface():
 def setup_channel(mcp, input_pin):
 	# TODO: Get these pin numbers from cli when starting program - needs to be variable
 	ai = AI(mcp, input_pin)
-	print("Created an analog input {} on MCP3008 Channel \#{}".format(ai, input_pin))
+	#print("Created an analog input {} on MCP3008 Channel \#{}".format(ai, input_pin))
 
 	return ai
 

@@ -8,6 +8,8 @@ import RPi.GPIO as g
 
 def write(path, data, now):
 	# TODO Error handling and just choose one place to display write-time
+	print("Write_log--path: {}".format(path))
+
 	with open(path, 'a+') as file:
 		file.write('Recorded: {}\n{}\n'.format(now, data))
 
@@ -23,7 +25,8 @@ def write_to_log(data):
 	#project_path = os.environ['/watering/WaterCtrl']
 	workspace = os.environ['workspace']
 	path="{}/watering/WaterCtrl/logs/sensors/{}/".format(workspace, date)
-
+	print("Write_to_log--path: {}".format(path))
+	# TODO fix this shit, only works on repeat, which isn't right.
 	if os.path.exists(path):
 		write(path+"{}.txt".format(time), data, time)
 	else:
