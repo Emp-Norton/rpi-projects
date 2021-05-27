@@ -1,0 +1,98 @@
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Curio-Ficoides-(Watering)':
+52992
+2.668400091554131
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Large-Succulent-Blue-(Echeveria)':
+24384
+1.2310734721904324
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Old-Pothos':
+64576
+3.2517097734035247
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'New-Pothos':
+34240
+1.7241474021515222
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from "Cilantro":
+26688
+1.3438681620508124
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Small-Succulent-(Cuban-Oregano)':
+32896
+1.656470588235294
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Prayer-Plant-(Capacative)-(Watering)':
+37312
+1.882059967956054
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Curio-Ficoides-(Watering)':
+52992
+2.668400091554131
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Large-Succulent-Blue-(Echeveria)':
+24384
+1.2310734721904324
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Old-Pothos':
+64576
+3.2517097734035247
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'New-Pothos':
+34240
+1.7241474021515222
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from "Cilantro":
+26688
+1.3438681620508124
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Small-Succulent-(Cuban-Oregano)':
+32576
+1.6403570611123826
+
+
+Recorded: 04:42:1621597353-AM
+
+Reading from 'Prayer-Plant-(Capacative)-(Watering)':
+37312
+1.8788372625314715
+
+

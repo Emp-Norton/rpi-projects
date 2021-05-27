@@ -1,0 +1,56 @@
+Recorded: 03:36:1621939011-AM
+
+Reading from Small-Succulent-(Cuban-Oregano):
+64512
+3.2484870679789424
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Curio-Ficoides:
+36352
+1.8304966811627372
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Large-Succulent-Blue-(Echeveria):
+23040
+1.1601739528496224
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Old-Pothos:
+30848
+1.5565667200732431
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from New-Pothos:
+40960
+2.062531471732662
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Cilantro:
+31168
+1.5694575417715724
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Small-Succulent-(Cuban-Oregano):
+28288
+1.4212130922407873
+
+
+Recorded: 03:36:1621939011-AM
+
+Reading from Prayer-Plant-(Capacative):
+36480
+1.8401647974364843
+
+
