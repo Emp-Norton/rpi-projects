@@ -17,6 +17,7 @@ from utils import get_analog_value, pump, get_args
 
 def setup_mcp_interface():
 	# TODO: investigate setting up multiple MCP3008 boards, and why P0 keeps getting fried (always no power or full power)
+		# TODO Followup- just use chip select CE0,1,1.12, 2.1.12? Check docs.
 	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
 	print("Created the SPI bus {}".format(spi))
 
@@ -29,14 +30,11 @@ def setup_mcp_interface():
 	return {'mcp': mcp, 'cs':cs, 'spi':spi}
 
 def setup_channel(mcp, input_pin):
-	# TODO: Get these pin numbers from cli when starting program - needs to be variable
 	ai = AI(mcp, input_pin)
-	#print("Created an analog input {} on MCP3008 Channel \#{}".format(ai, input_pin))
 
 	return ai
 
 def setup_pump(pin=PUMP_CTRL_PIN):
-	# TODO: Get these pin numbers from cli when starting program - needs to be variable
 	print("Setting up pump controller on pin {}".format(pin))
 	g.setup(pin, g.OUT)
 	g.output(pin, g.LOW)
@@ -57,9 +55,9 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 
 
 	for _, pin in args_dict:
-		pin = int(pin)
-		print(_, pin, args_dict)
-		input_channels[pin] = {'name': args_dict["p{}".format(pin)], 'sensor': setup_channel(mcp, pin)}
+	    pin = int(pin)
+	    print(_, pin, args_dict)
+	    input_channels[pin] = {'name': args_dict["p{}".format(pin)], 'sensor': setup_channel(mcp, pin), 'pin': pin}
 
 	setup_pump(pump_pin)
 
