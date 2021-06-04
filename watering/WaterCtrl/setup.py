@@ -34,7 +34,11 @@ def setup_channel(mcp, input_pin):
 
 	return ai
 
-def setup_pump(pin=PUMP_CTRL_PIN):
+def setup_pumps(pins):
+	for pin in pins:
+		setup_pump(pin)
+
+def setup_pump(pin):
 	print("Setting up pump controller on pin {}".format(pin))
 	g.setup(pin, g.OUT)
 	g.output(pin, g.LOW)
@@ -59,7 +63,7 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	    print(_, pin, args_dict)
 	    input_channels[pin] = {'name': args_dict["p{}".format(pin)], 'sensor': setup_channel(mcp, pin), 'pin': pin}
 
-	setup_pump(pump_pin)
+	setup_pumps([14, 15, 18])
 
 	return input_channels
 
