@@ -23,20 +23,20 @@ def write(path, data, now):
 	except Exception as e:
 		print("Failed with {}".format(e))
 
-def write_to_log(data):
+def write_to_log(data, module):
 	# TODO: Fix this to be more clear in output, better organized, better naming conventions, and dynamic file path (only if pulling to generic log_helper?)
 	now = datetime.now()
 	date = get_time_parts(now)['date']
 	time = get_time_parts(now)['time']
 
-	path="{}{}/logs/sensors/{}".format(workspace, project_path, date)
+	path="{}{}/logs/{}/{}".format(workspace, project_path, module, date)
 	file_path = "{}/{}.txt".format(path, time)
 
 	# TODO write helper runction to create directory and then just do `if not os.path.... then create -- end block, drop into "write" like you normally would. 
 	if os.path.exists(path):
 		write(file_path, data, time)
 	else:
-		new_dir = "{}{}/logs/sensors/{}".format(workspace, project_path, date)
+		new_dir = "{}{}/logs/{}/{}".format(workspace, project_path, module, date)
 		os.makedirs(new_dir)
 		file_name = "{}/{}.txt".format(new_dir, time)
 		write(file_name, data, time)
@@ -49,20 +49,22 @@ def read_all_pins(inputs, write_logs=False):
 		sensor = channel['sensor']
 		readings = get_analog_value(sensor)
 		message = "Reading from {}:\n{}\n{}\n\n".format(name, sensor.value, sensor.voltage)
-
+		print(message)
 		if write_logs:
 			if name is not None:
-				write_to_log(message)
+				write_to_log(message, "sensors")
 
 def get_analog_value(chan):
 	return {'raw': chan.value, 'voltage': chan.voltage}
 
+# todo fix this issienwitj seconds not being loggrd
 def pump(pump_pin, seconds):
-	# TODO: Log pump activity in terms of which relay pump, duration, etc
+	write_to_log("Running pump \#{} for {} seconds at {}\n".format(pump_pin, seconds, datetime.now()), "pumps")
 	print(pump_pin, seconds)
 	g.output(pump_pin, g.LOW)
 	time.sleep(seconds)
 	g.output(pump_pin, g.HIGH)
+	write_to_log("Stopping pump \#{} after {} seconds at {}\n".format(pump_pin, seconds, datetime.now()), "pumps")
 
 
 def get_args():
