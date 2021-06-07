@@ -5,13 +5,13 @@ import digitalio
 import RPi.GPIO as g
 import sys
 import time
+import vars
 
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
 
 from collections import defaultdict
-from vars import PUMP_CTRL_PIN, NUM_INPUTS
-from utils import get_analog_value, pump, get_args
+from utils import get_analog_value, get_args, read_all_inputs, run_all_pumps
 
 # TODO Create classes for hardware elements Pump, Sensor, and use methods. Way easier and cleaner.
 
@@ -30,15 +30,14 @@ def setup_mcp_interface():
 	return {'mcp': mcp, 'cs':cs, 'spi':spi}
 
 def setup_channel(mcp, input_pin):
-	ai = AI(mcp, input_pin)
-
-	return ai
+	return AI(mcp, input_pin)
 
 def setup_pumps(pins):
 	for pin in pins:
 		setup_pump(pin)
 
 def setup_pump(pin):
+# TODO This is where the class would come in handy, and be able to return a set of pump objects instead of just referring by pin num and having no methods
 	print("Setting up pump controller on pin {}".format(pin))
 	g.setup(pin, g.OUT)
 	g.output(pin, g.LOW)
@@ -57,13 +56,12 @@ def run_setup(num_inputs=NUM_INPUTS, pump_pin=PUMP_CTRL_PIN):
 	mcp = interface['mcp']
 	spi = interface['spi']
 
-
 	for _, pin in args_dict:
 	    pin = int(pin)
 	    print(_, pin, args_dict)
 	    input_channels[pin] = {'name': args_dict["p{}".format(pin)], 'sensor': setup_channel(mcp, pin), 'pin': pin}
 
-	setup_pumps([14, 15, 18])
+        setup_pumps(*PUMP_PINS)
 
 	return input_channels
 
