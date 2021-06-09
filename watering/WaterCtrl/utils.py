@@ -34,7 +34,10 @@ def write_to_log(data, module, *prefix):
 
 	path="{}{}/logs/{}/{}".format(workspace, project_path, module, date)
 	file_path = "{}/{}.txt".format(path, time)
-
+        print("Writing with prefix {}".format(prefix))
+        if prefix is not None:
+                import re
+                re.
 	# TODO write helper runction to create directory and then just do `if not os.path.... then create -- end block, drop into "write" like you normally would. 
 	if os.path.exists(path):
 		write(file_path, data, time)

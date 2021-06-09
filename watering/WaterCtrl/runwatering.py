@@ -1,11 +1,11 @@
 import setup as s
 
-from vars import PUMP_CTRL_PIN, NUM_INPUTS
-from utils import get_analog_value, pump, read_all_pins, write_to_log
+from utils import get_analog_value, pump, read_all_pins, run_all_pumps, write_to_log
 
 inputs = {}
 
 if __name__ == '__main__':
 	inputs = s.run_setup()
+	# TODO CLI argument to modify is_test
 
-print(inputs)
+read_all_pins(inputs, write_logs=True, *is_test)
