@@ -45,58 +45,63 @@ def write_to_log(data, module, *prefix):
 		write(file_name, data, time)
 
 
-def read_all_pins(inputs, write_logs=False):
+def read_all_pins(inputs, write_logs=False, *is_test):
         log_module = modules.SENSOR
+        prefix = "TEST" if is_test else None
         # TODO: add default paths and filename patterns for various components (pumps, sensors, etc)
         for channel in list(inputs.values()):
                 name = channel['name']
                 sensor = channel['sensor']
                 readings = get_analog_value(sensor)
                 message = "Reading from {}:\n{}\n{}\n\n".format(name, sensor.value, sensor.voltage)
-                print(message)
+                print(prefix, message)
                 if write_logs:
                         if name is not None:
-                                write_to_log(message, log_module)
+                                write_to_log(message, log_module, prefix)
 
 def get_analog_value(chan):
         # TODO Error handling and logging
         return {'raw': chan.value, 'voltage': chan.voltage}
 
 # todo fix this issienwitj seconds not being loggrd
-def pump(pump_pin, seconds):
+def pump(pump_pin, seconds, *is_test):
+        prefix = "TEST" if is_test else None
         log_module = module.PUMP
         log_message = "{} pump \#{} - {} seconds at {}\n".format(actions.START, pump_pin, seconds, datetime.now())
-        write_to_log(log_message, log_module)
-        print(log_message)
-
-        g.output(pump_pin, g.LOW)
-        time.sleep(seconds)
-        g.output(pump_pin, g.HIGH)
+        write_to_log(log_message, log_module, prefix)
+        print(prefix, log_message)
+        if not is_test:
+                g.output(pump_pin, g.LOW)
+                time.sleep(seconds)
+                g.output(pump_pin, g.HIGH)
+        else:
+                time.sleep(seconds)
 
         log_message = "{} pump \#{} - {} seconds at {}\n".format(actions.STOP, pump_pin, seconds, datetime.now())
-        print(log_message)
-        write_to_log(log_message, log_module)
+        print(prefix, log_message)
+        write_to_log(log_message, log_module, prefix)
 
-def run_all_pumps(pump_pins, seconds, **custom_times):
+def run_all_pumps(pump_pins, seconds, *is_test, **custom_times):
         """
         Pumps don't run concurrently, they run in sequence of provided pins.
         This is partially due to ease of development, but also because in a small reservoir they can interfere with each other's operation.
         """
+        prefix = "TEST" if is_test else None
         log_module = modules.PUMP
         pump_pin_times = {str(pin): seconds for pin in pump_pins}
 
         if custom_times:
                 log_message ="Using custom times: {}\n".format(custom_times)
-                write_to_log(log_message, log_module)
-                print(log_message)
+                write_to_log(log_message, log_module, prefix)
+                print(prefix, log_message)
                 for pin in custom_times:
                         pump_pin_times[pin] = custom_times[pin]
 
         for pin in pump_pin_times:
                 time = pump_pin_times[pin]
                 log_message = "Running pump \#{} for {} seconds at {}\n".format(pin, time, datetime.now())
-                write_to_log(log_message, log_module)
-                print(log_message)
+                write_to_log(log_message, log_module, prefix)
+                print(prefix, log_message)
 
 def get_args():
 	argp = argparse.ArgumentParser()

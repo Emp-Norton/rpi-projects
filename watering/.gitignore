@@ -4,3 +4,4 @@ watering
 .*
 WaterCtrl/backups/
 WaterCtrl/__pycache__/
+WaterCtrl/commands/
