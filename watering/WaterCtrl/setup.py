@@ -5,7 +5,7 @@ import digitalio
 import RPi.GPIO as g
 import sys
 import time
-import vars
+import var
 
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn as AI
