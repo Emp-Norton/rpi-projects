@@ -1,2 +1,6 @@
 logs/
 var.py
+watering
+.*
+WaterCtrl/backups/
+WaterCtrl/__pycache__/
