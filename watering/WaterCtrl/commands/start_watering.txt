@@ -1,2 +1,2 @@
-python -i runwatering.py $(cat /home/pi/projects/rpi-projects/watering/WaterCtrl/commands/args-test.txt) 
+python -i runwatering.py $(cat /home/pi/projects/rpi-projects/watering/WaterCtrl/commands/remap.txt) 
 # TODO Why do this instead of just adding the argparser to runwatering.py? What was I thinking?
