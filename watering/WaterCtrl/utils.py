@@ -1,10 +1,11 @@
 import argparse
+import actions
 from datetime import datetime
 import os
 import time
 from decouple import config
 import RPi.GPIO as g
-import modules
+import module
 # TODO Organize imports
 
 workspace = config('workspace')
@@ -18,7 +19,8 @@ def get_time_parts(now):
 
 	return {'date': date, 'time': time}
 
-# TODO Rename this function to avoid confusion / shadowing
+        # TODO Rename this function to avoid confusion / shadowing
+
 def write(path, data, now):
 	try:
 		with open(path, 'a+') as file:
@@ -34,10 +36,10 @@ def write_to_log(data, module, *prefix):
 
 	path="{}{}/logs/{}/{}".format(workspace, project_path, module, date)
 	file_path = "{}/{}.txt".format(path, time)
-        print("Writing with prefix {}".format(prefix))
-        if prefix is not None:
-                import re
-                re.
+	print("Writing with prefix {}".format(prefix))
+	#if prefix is not None:
+                #import re
+                #re.sub
 	# TODO write helper runction to create directory and then just do `if not os.path.... then create -- end block, drop into "write" like you normally would. 
 	if os.path.exists(path):
 		write(file_path, data, time)
@@ -49,7 +51,7 @@ def write_to_log(data, module, *prefix):
 
 
 def read_all_pins(inputs, write_logs=False, *is_test):
-        log_module = modules.SENSOR
+        log_module = module.SENSOR
         prefix = "TEST" if is_test else None
         # TODO: add default paths and filename patterns for various components (pumps, sensors, etc)
         for channel in list(inputs.values()):
@@ -90,7 +92,7 @@ def run_all_pumps(pump_pins, seconds, *is_test, **custom_times):
         This is partially due to ease of development, but also because in a small reservoir they can interfere with each other's operation.
         """
         prefix = "TEST" if is_test else None
-        log_module = modules.PUMP
+        log_module = module.PUMP
         pump_pin_times = {str(pin): seconds for pin in pump_pins}
 
         if custom_times:

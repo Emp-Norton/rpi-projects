@@ -44,7 +44,7 @@ def setup_pump(pin):
         g.output(pin, g.HIGH)
 
 
-def run_setup(num_inputs=vars.NUM_INPUTS, pump_pins=vars.PUMP_PINS):
+def run_setup(num_inputs=var.NUM_INPUTS, pump_pins=[var.PUMP_PINS]):
         print("Running setup MCP/CS/SPI")
         interface = setup_mcp_interface()
 
