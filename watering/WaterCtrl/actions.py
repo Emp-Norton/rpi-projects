@@ -1,0 +1,2 @@
+START = 'starting'
+STOP = 'stopping'
