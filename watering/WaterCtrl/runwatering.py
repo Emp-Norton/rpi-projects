@@ -8,4 +8,4 @@ if __name__ == '__main__':
 	inputs = s.run_setup()
 	# TODO CLI argument to modify is_test
 
-read_all_pins(inputs, *is_test, write_logs=True)
+read_all_pins(inputs, write_logs=True)
