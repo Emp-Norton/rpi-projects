@@ -1,2 +1,5 @@
-START = 'starting'
-STOP = 'stopping'
+
+START='Starting'
+STOP='Stopping'
+
+
