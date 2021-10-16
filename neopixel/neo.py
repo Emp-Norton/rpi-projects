@@ -2,6 +2,12 @@
 
 import board
 import neopixel
+from decouple import config
+
+from util import *
+
+ctrl_pin = config('pin')
+num_pixels = config('numpixels')
 
 pixels = neopixel.NeoPixel(board.D18, 300)
 
