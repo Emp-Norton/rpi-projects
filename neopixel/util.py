@@ -67,3 +67,13 @@ class Strip(NeoPixel):
         while True:
             m = (m + 1) % 2
             xmas_helper(wait, m)
+
+
+    def increment_colors(self, wait, offset=0):
+        while True:
+            for p in range(self.num_pixels+offset):
+                q = (p + offset) % 255
+                self[p % self.num_pixels] = self.wheel(q & 255)
+                self.show()
+                offset += 1
+                time.sleep(wait)
