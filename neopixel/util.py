@@ -17,12 +17,7 @@ class Strip(NeoPixel):
         self.OFF = (0,0,0)
 
     def off(self):
-    # TODO Switch this with below
-        self.pixels.fill(self.OFF)
-
-    def fill(self, color):
-        return super().fill(color)
-
+        self.fill(self.OFF)
 
     def wheel(self, pos):
         """ Input a value 0 to 255 to get a color value. The colours are a transition r - g - b - back to r."""
@@ -56,13 +51,12 @@ class Strip(NeoPixel):
 
     def xmas(self, wait, m=1):
         def xmas_helper(wait, m):
-            self.pixels = NeoPixel(board.D18, num_pixels) if not self.pixels else self.pixels
-            for i in range(len(self.pixels)):
+            for i in range(self.num_pixels):
                 if i % 2 == m:
-                     self.pixels[i] = self.RED
+                     self[i] = self.RED
                 else:
-                     self.pixels[i] = self.GREEN
-            self.pixels.show()
+                     self[i] = self.GREEN
+            self.show()
             time.sleep(wait)
         while True:
             m = (m + 1) % 2
