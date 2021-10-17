@@ -2,12 +2,13 @@
 
 import board
 import neopixel
+
 from decouple import config
 
 from util import *
 
 ctrl_pin = config('pin')
-num_pixels = config('numpixels')
+num_pixels = int(config('numpixels'))
 
-pixels = neopixel.NeoPixel(board.D18, 300)
-
+pixels = neopixel.NeoPixel(board.D18, num_pixels)
+s = Strip(pixels, **{'pin':board.D18,'n':num_pixels})
