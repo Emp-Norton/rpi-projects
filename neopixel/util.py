@@ -8,17 +8,16 @@ num_pixels = int(config('numpixels')) or 240
 pin = config('pin')
 
 class Strip(NeoPixel):
-    def __init__(self, pixels, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        #self.data= dict(kwargs)
-        self.pixels = pixels
-        self.num_pixels = len(self.pixels)
+        self.num_pixels = num_pixels
         self.RED = (255,0,0)
         self.GREEN = (0,255,0)
         self.BLUE = (0,0,255)
         self.OFF = (0,0,0)
 
     def off(self):
+    # TODO Switch this with below
         self.pixels.fill(self.OFF)
 
     def fill(self, color):
@@ -48,18 +47,14 @@ class Strip(NeoPixel):
 
     def rainbow_cycle(self, wait):
         for j in range(255):
-            print(j)
             for i in range(self.num_pixels):
-                pi = i + j
                 pixel_index = (i * 256 // self.num_pixels) + j
-                print(pixel_index,pi)
                 self.pixels[i] = self.wheel(pixel_index & 255)
                 self.pixels.show()
                 time.sleep(wait)
 
 
     def xmas(self, wait, m=1):
-        """ Run with ```while True: m = (m + 1) % 2; s.xmas(1, m)``` """
         def xmas_helper(wait, m):
             self.pixels = NeoPixel(board.D18, num_pixels) if not self.pixels else self.pixels
             for i in range(len(self.pixels)):

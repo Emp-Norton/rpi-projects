@@ -10,5 +10,4 @@ from util import *
 ctrl_pin = config('pin')
 num_pixels = int(config('numpixels'))
 
-pixels = neopixel.NeoPixel(board.D18, num_pixels)
-s = Strip(pixels, **{'pin':board.D18,'n':num_pixels})
+s = Strip(**{'pin':board.D18,'n':num_pixels})
