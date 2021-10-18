@@ -67,7 +67,23 @@ class Strip(NeoPixel):
         while True:
             for p in range(self.num_pixels+offset):
                 q = (p + offset) % 255
+                print(q)
                 self[p % self.num_pixels] = self.wheel(q & 255)
                 self.show()
                 offset += 1
                 time.sleep(wait)
+
+
+    def movealong(self, step=1):
+        first_pass = True
+        while True:
+            for p in range(0, self.num_pixels):
+                if first_pass:
+                    color = self.wheel(p & 255)
+                    self[p] = color
+                else:
+                    next = self[(p+step) % self.num_pixels]
+                    print(p, (p+step)%self.num_pixels)
+                    self[p] = next
+                self.show()
+            first_pass = False
