@@ -1,6 +1,7 @@
 from decouple import config
 from gpiozero import Servo
 
+<<<<<<< HEAD
 pins = config('pins', [13, 18])
 
 class ServoWrapper(Servo):
@@ -19,3 +20,11 @@ class ServoWrapper(Servo):
     def setup(self, pins=pins):
         [self.servos.append(self.setup_servo(pin)) for pin in pins]
 
+=======
+pin = config('servo_pin')
+
+servo = Servo(pin)
+
+class ServoWrapper(Servo):
+    def __init__(self, pin):
+>>>>>>> 376019ce91fc2957f61b0dc6e2d2387274972d5f
