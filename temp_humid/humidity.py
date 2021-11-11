@@ -1,11 +1,15 @@
+import logging
+
 import adafruit_dht
 from adafruit_ahtx0 import AHTx0
+
 import board
 from decouple import config
 
 pin1 = config('pin1') or 5
 pin2 = config('pin2') or 4
 
+# I2C device will only work if there are no other I2C devices on the bus, unless manually configure I2C0 or setup multiplexer
 i2c = board.I2C()
 aht = AHTx0(i2c)
 dht = adafruit_dht.DHT11(pin1)
